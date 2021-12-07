@@ -6,8 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nulah.AdventOfCode2022.Day1\Nulah.AdventOfCode2022.Day1.csproj" />
-    <ProjectReference Include="..\Nulah.AdventOfCode2022.Day2\Nulah.AdventOfCode2022.Day2.csproj" />
+    <None Update="Day01\Day1Input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Day02\Day2Input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Inputs\" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,8 @@ namespace Nulah.AdventOfCode2022
         static void Main(string[] args)
         {
             //Day1()
-            Day2();
+            //Day2();
+            Day3();
         }
 
         static void Day1()
@@ -24,6 +25,11 @@ namespace Nulah.AdventOfCode2022
             var submarineController = new SubmarineController();
             var finalLocation = submarineController.FollowInstructions();
             var finalLocationWithAim = submarineController.FollowInstructionsWithAim();
+        }
+
+        static void Day3()
+        {
+
         }
     }
 }
