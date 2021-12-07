@@ -92,7 +92,7 @@ namespace Nulah.AdventOfCode2021.Tests
 
             var result = diagnosticReporter.GetPowerConsumption(input);
 
-            Assert.AreEqual(3320834, result);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -126,6 +126,23 @@ namespace Nulah.AdventOfCode2021.Tests
             var result = diagnosticReporter.GetLifeSupportRating(input);
 
             Assert.AreEqual(230, result);
+        }
+
+        [TestMethod]
+        public void GetLifeSupportRating_ForDay3BinaryInput()
+        {
+            var diagnosticReporter = new DiagnosticReporter();
+            var AoCAssembly = typeof(DiagnosticReporter).Assembly;
+            var AoCAssemblyLocation = new FileInfo(AoCAssembly.Location).Directory;
+            var day3InputFileLocation = Path.Combine(AoCAssemblyLocation.FullName, "Day03", "Day3Input.txt");
+            var input = diagnosticReporter.StringInputToList(File.ReadAllLines(day3InputFileLocation));
+
+            // Answer confirmed for my submission
+            var expected = 4481199;
+
+            var result = diagnosticReporter.GetLifeSupportRating(input);
+
+            Assert.AreEqual(expected, result);
         }
     }
 }
