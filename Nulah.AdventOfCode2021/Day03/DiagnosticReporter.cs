@@ -140,6 +140,12 @@ namespace Nulah.AdventOfCode2021.Day3
             return ~gamma ^ s;
         }
 
+        /// <summary>
+        /// Returns the Oxygen Generator Rating for a list of diagnostic inputs
+        /// </summary>
+        /// <param name="diagnosticInput"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public int GetOxygenGeneratorRating(List<int> diagnosticInput)
         {
             if (diagnosticInput == null || diagnosticInput.Count == 0)
@@ -159,6 +165,12 @@ namespace Nulah.AdventOfCode2021.Day3
             }
         }
 
+        /// <summary>
+        /// Returns the CO2 Scrubber Rating for a list of diagnostic inputs
+        /// </summary>
+        /// <param name="diagnosticInput"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public int GetCO2ScrubberRating(List<int> diagnosticInput)
         {
             if (diagnosticInput == null || diagnosticInput.Count == 0)
@@ -236,7 +248,11 @@ namespace Nulah.AdventOfCode2021.Day3
             }
         }
 
-
+        /// <summary>
+        /// Returns life support rating for the given list of diagnostic inputs
+        /// </summary>
+        /// <param name="diagnosticInput"></param>
+        /// <returns></returns>
         public int GetLifeSupportRating(List<int> diagnosticInput)
         {
             if (diagnosticInput == null || diagnosticInput.Count == 0)
