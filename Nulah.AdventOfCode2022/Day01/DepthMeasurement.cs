@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Nulah.AdventOfCode2022.Day1
+namespace Nulah.AdventOfCode2021.Day1
 {
     public class DepthMeasurement
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System;
 using System.Numerics;
 
-namespace Nulah.AdventOfCode2022.Day2
+namespace Nulah.AdventOfCode2021.Day2
 {
     public class SubmarineController
     {

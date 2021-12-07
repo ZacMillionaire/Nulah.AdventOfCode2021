@@ -1,10 +1,10 @@
-﻿using Nulah.AdventOfCode2022.Day1;
-using Nulah.AdventOfCode2022.Day2;
-using Nulah.AdventOfCode2022.Day3;
+﻿using Nulah.AdventOfCode2021.Day1;
+using Nulah.AdventOfCode2021.Day2;
+using Nulah.AdventOfCode2021.Day3;
 using System;
 using System.IO;
 
-namespace Nulah.AdventOfCode2022
+namespace Nulah.AdventOfCode2021
 {
     internal class Program
     {
