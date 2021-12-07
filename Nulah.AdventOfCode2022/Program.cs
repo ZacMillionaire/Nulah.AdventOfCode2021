@@ -23,6 +23,7 @@ namespace Nulah.AdventOfCode2022
         {
             var submarineController = new SubmarineController();
             var finalLocation = submarineController.FollowInstructions();
+            var finalLocationWithAim = submarineController.FollowInstructionsWithAim();
         }
     }
 }

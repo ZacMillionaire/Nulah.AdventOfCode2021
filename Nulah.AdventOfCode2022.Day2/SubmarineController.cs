@@ -11,6 +11,8 @@ namespace Nulah.AdventOfCode2022.Day2
 
         public int FollowInstructions()
         {
+            _position = new();
+
             var inputFile = File.ReadAllLines("Day2Input.txt");
 
             if (inputFile == null || inputFile.Length == 0)
@@ -30,32 +32,74 @@ namespace Nulah.AdventOfCode2022.Day2
                 switch (char.ToUpper(instructionLine[0][0]))
                 {
                     case 'F':
-                        _position.X += int.Parse(instructionLine[1]);
+                        _position.Horizontal += int.Parse(instructionLine[1]);
                         break;
                     case 'D':
-                        _position.Y += int.Parse(instructionLine[1]);
+                        _position.Depth += int.Parse(instructionLine[1]);
                         break;
                     case 'U':
-                        _position.Y -= int.Parse(instructionLine[1]);
+                        _position.Depth -= int.Parse(instructionLine[1]);
                         break;
                     default:
                         break;
                 }
             }
 
-            return _position.X * _position.Y;
+            return _position.Horizontal * _position.Depth;
+        }
+
+        public int FollowInstructionsWithAim()
+        {
+            _position = new();
+
+            var inputFile = File.ReadAllLines("Day2Input.txt");
+
+            if (inputFile == null || inputFile.Length == 0)
+            {
+                return 0;
+            }
+
+            foreach (string line in inputFile)
+            {
+                var instructionLine = line.Split(' ');
+
+                if (instructionLine.Length != 2)
+                {
+                    throw new InvalidDataException();
+                }
+
+                switch (char.ToUpper(instructionLine[0][0]))
+                {
+                    case 'F':
+                        _position.Horizontal += int.Parse(instructionLine[1]);
+                        _position.Depth += int.Parse(instructionLine[1]) * _position.Aim;
+                        break;
+                    case 'D':
+                        _position.Aim += int.Parse(instructionLine[1]);
+                        break;
+                    case 'U':
+                        _position.Aim -= int.Parse(instructionLine[1]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return _position.Horizontal * _position.Depth;
         }
     }
 
     public struct Position
     {
-        public int X;
-        public int Y;
+        public int Horizontal;
+        public int Depth;
+        public int Aim;
 
         public Position()
         {
-            X = 0;
-            Y = 0;
+            Horizontal = 0;
+            Depth = 0;
+            Aim = 0;
         }
     }
 }
