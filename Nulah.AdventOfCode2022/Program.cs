@@ -1,6 +1,8 @@
 ﻿using Nulah.AdventOfCode2022.Day1;
 using Nulah.AdventOfCode2022.Day2;
+using Nulah.AdventOfCode2022.Day3;
 using System;
+using System.IO;
 
 namespace Nulah.AdventOfCode2022
 {
@@ -29,6 +31,10 @@ namespace Nulah.AdventOfCode2022
 
         static void Day3()
         {
+            var diagnosticReporter = new DiagnosticReporter();
+            var input = diagnosticReporter.StringInputToList(File.ReadAllLines("Day03/Day3Input.txt"));
+
+            var result = diagnosticReporter.GetPowerConsumption(input);
 
         }
     }

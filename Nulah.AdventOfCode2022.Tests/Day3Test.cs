@@ -1,7 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nulah.AdventOfCode2022.Day3;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Nulah.AdventOfCode2022.Tests
 {
@@ -10,7 +12,7 @@ namespace Nulah.AdventOfCode2022.Tests
     {
 
         [TestMethod]
-        public void BinaryInput_ShouldProduce_ListInt()
+        public void BinarySampleInput_ShouldProduce_ListInt()
         {
             var diagnosticReporter = new DiagnosticReporter();
 
@@ -40,7 +42,7 @@ namespace Nulah.AdventOfCode2022.Tests
         }
 
         [TestMethod]
-        public void GetPowerConsumption_ForBinaryInput_ShouldProduce_198()
+        public void GetPowerConsumption_ForBinarySampleInput_ShouldProduce_198()
         {
             var diagnosticReporter = new DiagnosticReporter();
             var input = diagnosticReporter.StringInputToList(new string[]
@@ -62,6 +64,23 @@ namespace Nulah.AdventOfCode2022.Tests
             var result = diagnosticReporter.GetPowerConsumption(input);
 
             Assert.AreEqual(198, result);
+        }
+
+        [TestMethod]
+        public void GetPowerConsumption_ForDay3BinaryInput()
+        {
+            var diagnosticReporter = new DiagnosticReporter();
+            var AoCAssembly = typeof(DiagnosticReporter).Assembly;
+            var AoCAssemblyLocation = new FileInfo(AoCAssembly.Location).Directory;
+            var day3InputFileLocation = Path.Combine(AoCAssemblyLocation.FullName, "Day03", "Day3Input.txt");
+            var input = diagnosticReporter.StringInputToList(File.ReadAllLines(day3InputFileLocation));
+
+            // Answer confirmed for my submission
+            var expected = 3320834;
+
+            var result = diagnosticReporter.GetPowerConsumption(input);
+
+            Assert.AreEqual(3320834, result);
         }
     }
 }
