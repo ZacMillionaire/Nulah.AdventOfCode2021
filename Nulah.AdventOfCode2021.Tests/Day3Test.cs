@@ -94,5 +94,38 @@ namespace Nulah.AdventOfCode2021.Tests
 
             Assert.AreEqual(3320834, result);
         }
+
+        [TestMethod]
+        public void GetOxygenGeneratorRating_ForBinarySampleInput_ShouldProduce_23()
+        {
+            var diagnosticReporter = new DiagnosticReporter();
+            var input = diagnosticReporter.StringInputToList(_testInput);
+
+            var result = diagnosticReporter.GetOxygenGeneratorRating(input);
+
+            Assert.AreEqual(23, result);
+        }
+
+        [TestMethod]
+        public void GetCO2ScrubberRating_ForBinarySampleInput_ShouldProduce_10()
+        {
+            var diagnosticReporter = new DiagnosticReporter();
+            var input = diagnosticReporter.StringInputToList(_testInput);
+
+            var result = diagnosticReporter.GetCO2ScrubberRating(input);
+
+            Assert.AreEqual(10, result);
+        }
+
+        [TestMethod]
+        public void GetLifeSupportRating_ForBinarySampleInput_ShouldProduce_230()
+        {
+            var diagnosticReporter = new DiagnosticReporter();
+            var input = diagnosticReporter.StringInputToList(_testInput);
+
+            var result = diagnosticReporter.GetLifeSupportRating(input);
+
+            Assert.AreEqual(230, result);
+        }
     }
 }

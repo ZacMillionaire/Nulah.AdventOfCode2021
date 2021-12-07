@@ -139,5 +139,116 @@ namespace Nulah.AdventOfCode2021.Day3
             var s = -0b1 << BinaryWidth;
             return ~gamma ^ s;
         }
+
+        public int GetOxygenGeneratorRating(List<int> diagnosticInput)
+        {
+            if (diagnosticInput == null || diagnosticInput.Count == 0)
+            {
+                return -1;
+            }
+
+            var oxygenGeneratorRating = ReduceDiagnosticInputByBitCriteria(diagnosticInput, BinaryWidth - 1, (cumSum, midPoint) => cumSum >= midPoint);
+
+            if (oxygenGeneratorRating.Count == 1)
+            {
+                return oxygenGeneratorRating[0];
+            }
+            else
+            {
+                throw new Exception("Reduction resulted in 0 or more than 1 oxygen generator ratings");
+            }
+        }
+
+        public int GetCO2ScrubberRating(List<int> diagnosticInput)
+        {
+            if (diagnosticInput == null || diagnosticInput.Count == 0)
+            {
+                return -1;
+            }
+
+            var co2ScrubberRating = ReduceDiagnosticInputByBitCriteria(diagnosticInput, BinaryWidth - 1, (cumSum, midPoint) => cumSum < midPoint);
+
+            if (co2ScrubberRating.Count == 1)
+            {
+                return co2ScrubberRating[0];
+            }
+            else
+            {
+                throw new Exception("Reduction resulted in 0 or more than 1 CO2 scrubber ratings");
+            }
+        }
+
+        /// <summary>
+        /// Recursive. Reduces a list of diagnostics based on the mask by taking the most common bit of each column, and filtering out
+        /// values that do not contain that bit.
+        /// <para>
+        /// The tie breaker is what determines if a 1 wins out, or a 0
+        /// </para>
+        /// </summary>
+        /// <param name="diagnosticInput"></param>
+        /// <param name="maskSize"></param>
+        /// <param name="tieBreaker"></param>
+        /// <returns></returns>
+        private List<int> ReduceDiagnosticInputByBitCriteria(List<int> diagnosticInput, int maskSize, Func<int, int, bool> tieBreaker)
+        {
+            if (maskSize < 0 || diagnosticInput.Count == 1)
+            {
+                return diagnosticInput;
+            }
+            var tempCollectList = new List<int>();
+
+            // Set our mask to be the position of the bit we're currently interested in
+            var mask = 0b1 << maskSize;
+
+            // To know if we have more 1's than 0's, calculate the max value possible if all columns contained a 1 
+            var max = mask * diagnosticInput.Count;
+
+            // Get the int value resulting in summing all bits in the mask position with a 1 for their bit
+            int cumulativeTotal = GetMostSignificantBit(diagnosticInput, mask);
+
+            // Compare the total, and if it's greater than or equal to half the max, we have more 1's than 0's for that "column"
+            // So it is the dominate bit
+            if (tieBreaker(cumulativeTotal, max / 2))
+            {
+                // Collect all the inputs that start with a 1 in their binary form for the given mask position
+                foreach (int input in diagnosticInput)
+                {
+                    // AND the mask, and if the result is non-0, the position is a 1
+                    if ((input & mask) != 0)
+                    {
+                        tempCollectList.Add(input);
+                    }
+                }
+                return ReduceDiagnosticInputByBitCriteria(tempCollectList, maskSize - 1, tieBreaker);
+            }
+            else
+            {
+                // Collect all the inputs that start with a 0 in their binary form for the given mask position
+                foreach (int input in diagnosticInput)
+                {
+                    // AND the mask, and if the result is 0, the position is a 0
+                    if ((input & mask) == 0)
+                    {
+                        tempCollectList.Add(input);
+                    }
+                }
+                return ReduceDiagnosticInputByBitCriteria(tempCollectList, maskSize - 1, tieBreaker);
+            }
+        }
+
+
+        public int GetLifeSupportRating(List<int> diagnosticInput)
+        {
+            if (diagnosticInput == null || diagnosticInput.Count == 0)
+            {
+                return -1;
+            }
+
+            var oxygenGeneratorRating = GetOxygenGeneratorRating(diagnosticInput);
+            var co2ScrubberRating = GetCO2ScrubberRating(diagnosticInput);
+
+            return oxygenGeneratorRating * co2ScrubberRating;
+        }
+
     }
 }
