@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nulah.AdventOfCode2022.Day1\Nulah.AdventOfCode2022.Day1.csproj" />
+    <ProjectReference Include="..\Nulah.AdventOfCode2022.Day2\Nulah.AdventOfCode2022.Day2.csproj" />
   </ItemGroup>
 
 </Project>
